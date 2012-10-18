@@ -1,0 +1,26 @@
+## Interface: 50001
+## Title: Lavradores
+## Author: Zehd - Goldrin
+## Notes: A set of utilities to help gain reputation with Tillers.
+## Version: 1.0.6
+## SavedVariables: LavradoresDB
+## SavedVariablesPerCharacter: PratosEntregues
+
+#@no-lib-strip@
+embeds.xml
+#@end-no-lib-strip@
+
+Locales\enUS.lua
+Locales\ptBR.lua
+Locales\ruRU.lua
+Locales\frFR.lua
+Locales\deDE.lua
+
+Core.lua
+
+lavradores.lua
+lavradores.xml
+options.lua
+
+AuctionatorHistory.lua
+
