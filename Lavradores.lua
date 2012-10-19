@@ -215,30 +215,49 @@ function Lavradores:MantimentosOn()
     Lavradores:RegisterEvent("QUEST_PROGRESS", "QUEST_PROGRESS")
     Lavradores:RegisterEvent("QUEST_COMPLETE", "QUEST_COMPLETE")
 
+    self.db.char.mantimentos = true
 end
 function Lavradores:MantimentosOff()
     Lavradores:UnregisterEvent("GOSSIP_SHOW")
     Lavradores:UnregisterEvent("QUEST_PROGRESS")
     Lavradores:UnregisterEvent("QUEST_COMPLETE")
+
+    self.db.char.mantimentos = false
+end
+function Lavradores:GetMantimentos()
+    if self.db.char.mantimentos then
+        return self.db.char.mantimentos
+    else
+        return false
+   end
+end
+function Lavradores:SetMantimentos(info, value)
+    if value == true then
+        Lavradores:MantimentosOn()
+    else
+        Lavradores:MantimentosOff()
+    end
 end
 
 function Lavradores:QUEST_PROGRESS()
         local quest = GetQuestID()
-        if quest == 31535 then -- nam pata de ferro troca de mantimentos por fica
+        if quest == 31535 and GetItemCount(87557) > 0 then -- nam pata de ferro troca de mantimentos por fica
             CompleteQuest()
         end
 end
 
 function Lavradores:QUEST_COMPLETE()
         local quest = GetQuestID()
-         if quest == 31535 then -- quest de troca de mantimentos por ficha
+         if quest == 31535 and GetItemCount(87557) > 0 then -- quest de troca de mantimentos por ficha
             CompleteQuest()
             QuestFrameCompleteQuestButton:Click()
         end
 
 end
 function Lavradores:SelecionaQuestMantimentos()
+    if GetItemCount(87557) > 0 then
     SelectGossipAvailableQuest(1)
+    end
 end
 
 function Lavradores:GetEscondido()

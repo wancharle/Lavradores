@@ -23,6 +23,10 @@ function Lavradores:OnEnable()
    if self.db.char.historico then
        self:Hook()
    end
+   
+   if self.db.char.mantimentos then
+       self:MantimentosOn()
+   end
 
     Lavradores:OnListShow()								
     --Lavradores:SecureHookScript(TradeSkillDetailScrollFrame, "OnEnter", "OnMostraTooltip");

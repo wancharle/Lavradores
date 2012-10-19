@@ -10,6 +10,13 @@ Lavradores.options = {
             set = "SetEscondido",
             get = "GetEscondido",
         },
+       Mantimentos = {
+           type = "toggle",
+           name = "Nan Quest autocomplete",
+           desc = "Auto completa as quests de trocas de mantimentos",
+           set = "SetMantimentos",
+           get = "GetMantimentos",
+           },
     },
 }
 
