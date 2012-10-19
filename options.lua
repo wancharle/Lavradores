@@ -42,6 +42,11 @@ Lavradores.options = {
                         get = "GetFarm",
 
                      },
+             Alert = {
+                 type = "description",
+                 name = "\n\nNote: All texts were translated via google translate. \nAny mistake in the text or in the addon let me know.\nLeave a comment (or private message) with the error in http://www.curse.com/addons/wow/lavradores.",
+                 order = 5,
+                 },
       },
 }
 
