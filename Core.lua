@@ -67,9 +67,14 @@ function Lavradores:tillslash(msg)
         Todo1:Hide()
         self.db.char.escondido = true
     else
-        if command == "" or command == "show" or command == "mostrar" then
+        if command == "" or command =="options" then
+            InterfaceOptionsFrame_OpenToCategory(self.optionsFrame)
+        end
+
+        if command == "show" or command == "mostrar" then
             Todo1:Show()
             self.db.char.escondido = false
+
         else if command == "houses" or command == "casas" then
                 mostra_lavradores()	
              
