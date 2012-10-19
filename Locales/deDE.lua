@@ -2,7 +2,15 @@
  
 local L = LibStub("AceLocale-3.0"):NewLocale("Lavradores", "deDE") 
 if not L then return end 
- 
+
+L["Mover lista"]= "Bewegen Liste"
+L["Permite mudar a posição da lista."]= "Hier können Sie die Position der Liste zu ändern."
+L["Escondido"] = "Versteckt"
+L["Marque se quiser deixar a lista de ingredientes escondida"] = "Überprüfen Sie, ob Sie zu verlassen versteckt die Liste der Zutaten wollen."
+L["Reabastecendo a despensa"] = "Auffüllen der Speisekammer"
+L["Auto completa a quest 'Reabastecendo a despensa'"]= "Auto complete quest  'Auffüllen der Speisekammer'"
+L["Mostra a lista de ingredientes mesmo quando a pessoa já pegou os itens necessários para o dia."]= "Lassen Sie sich die Liste der Zutaten, auch wenn die Person hat die notwendigen Elemente für den Tag haben."
+
 
 L["Lavrador ERRADO!"] = "Farmer FALSCH!"
 L["Veja na descrição do item para qual lavrador vc deve entregá-lo."] = "Siehe die Beschreibung des Artikels, um welche Bauern müssen Sie es zu liefern."
