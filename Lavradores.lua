@@ -4,21 +4,21 @@ local id_prato = 0
 local prato_count = 0;
 local Ingredientes = {
     ["Carnes"] = {
-        ["74837"] = { 5,  L["Carnes Crua de tartaruga"], {["74649"]=5}},
-        ["74833"] = { 5,  L["Bifes de Tigre de Cru"], {["74642"]=5}},
-        ["74839"] = { 10,  L["Peitos de Ave Selvagem"], {["74654"]=5,["74647"]=5} }
+        ["74837"] = { 5,  L["Carnes Crua de tartaruga"], {["74649"]=1}},
+        ["74833"] = { 5,  L["Bifes de Tigre de Cru"], {["74642"]=1}},
+        ["74839"] = { 10,  L["Peitos de Ave Selvagem"], {["74654"]=1,["74647"]=1} }
     },
     ["Peixes"] = {
-          ["74864"] = { 5, L["Polvos dos Recifes"], {["74647"]=5}},
-          ["74856"] = {10, L["Piramboia de Jade"], {["74644"]=5,["74645"]=5}},
-          ["74857"] = {5,  L["Camarão-grilo Gigante"], {["74651"]=5}},
-          ["74865"] = {10, L["Peixe-espátula de Krasarang"], { ["74655"]=10}},
-          ["74859"] = {5,  L["Salmão imperial"], {["74652"]=5, }}
+          ["74864"] = { 5, L["Polvos dos Recifes"], {["74647"]=1}},
+          ["74856"] = {10, L["Piramboia de Jade"], {["74644"]=1,["74645"]=1}},
+          ["74857"] = {5,  L["Camarão-grilo Gigante"], {["74651"]=1}},
+          ["74865"] = {10, L["Peixe-espátula de Krasarang"], { ["74655"]=2}},
+          ["74859"] = {5,  L["Salmão imperial"], {["74652"]=1, }}
     },
     ["Legumes"] = {
-         ["74843"] = { 25,  L["Cebolinhas"], {["74652"]=25}},
-         ["74841"] = { 35,  L["Cenoura Mordélicia"], {["74649"]=25,["74643"]=10}},
-         ["74848"] = { 25,  L["Melão Listrado"], {["74645"]=25}}
+         ["74843"] = { 25,  L["Cebolinhas"], {["74652"]=5}},
+         ["74841"] = { 35,  L["Cenoura Mordélicia"], {["74649"]=5,["74643"]=2}},
+         ["74848"] = { 25,  L["Melão Listrado"], {["74645"]=5}}
    }
 }
 
@@ -172,9 +172,11 @@ function Lavradores:Atualize()
            for p, ja in pairs(conteudo[3]) do
                 local name, desc, rep = GetFactionInfoByID(Pratos[p][3])
                 if rep == 8 or GetItemCount(p) >= 5 or PratosEntregues[p] == day then
-
-                    jatem = jatem + ja
+                    jatem = jatem + (ja*5)
+                else
+                    jatem = jatem + GetItemCount(p)*ja
                 end
+                
            end
            local limite = 0
            limite = conteudo[1] - jatem
