@@ -5,7 +5,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale("Lavradores",false);
 function Lavradores:OnInitialize()
   LibStub("AceConfig-3.0"):RegisterOptionsTable("Lavradores", self.options)
   self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("Lavradores", "Lavradores") 
-end
+   
+  end
 function Lavradores:OnListShow()
     if Lavradores.db.char.escondido == true then
         Todo1:Hide()
@@ -19,7 +20,15 @@ end
 function Lavradores:OnEnable()
     Lavradores:Enable()
     self.db = LibStub("AceDB-3.0"):New("LavradoresDB")
-   
+    
+   if PratosEntregues then
+        Lavradores:Atualize()
+   else
+        PratosEntregues = {
+             ["74649"]  = 10,
+            }
+   end
+
    if self.db.char.historico then
        self:Hook()
    end

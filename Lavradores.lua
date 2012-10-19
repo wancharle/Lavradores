@@ -87,7 +87,6 @@ end
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("BAG_UPDATE")
 frame:RegisterEvent("QUEST_PROGRESS")
-frame:RegisterEvent("VARIABLES_LOADED")
 
 function frame:OnEvent(event, arg1)
     
@@ -101,11 +100,9 @@ function frame:OnEvent(event, arg1)
                 prato_count = 0
             end
         end
-        AtualizeLavradores()
-    else if event == "VARIABLES_LOADED" then
-            LavradoresInicia()        
-        else
-            if event =="QUEST_PROGRESS" and  GetNumQuestItems() > 0 then
+        Lavradores:Atualize()
+    else  
+        if event =="QUEST_PROGRESS" and  GetNumQuestItems() > 0 then
                   Lavradores:CheckItens()
                   if id_prato == 0 then
 
@@ -121,14 +118,13 @@ function frame:OnEvent(event, arg1)
                       end 
                   end
             end
-        end
     end
 end
 frame:SetScript("OnEvent", frame.OnEvent)
 
 function Lavradores:Toogle()
     if  self.db.char.fechado == true then
-        AtualizeLavradores()
+        self:Atualize()
         self:Expand(Todo1);
     else if self.db.char.fechado == false or self.db.char.fechado == nil then
        self:Collapse(Todo1);
@@ -161,7 +157,7 @@ end
 
 
 
-function AtualizeLavradores()
+function Lavradores:Atualize()
   -- For Each Bag ID
    local texto0 = ""  
    local texto = ""
@@ -179,9 +175,11 @@ function AtualizeLavradores()
            end
            local limite = 0
            limite = conteudo[1] - jatem
-           if count < limite then
+           if limite > 0 then
+             if count < limite or  Lavradores:GetFarm() then
                texto = texto .."\n".. count .."/".. limite .. " - " .. conteudo[2] 
                total_objetivos = total_objetivos + 1
+               end
            end
        end
        if texto ~= "" then
@@ -205,19 +203,20 @@ function AtualizeLavradores()
    if texto ~= "" then
        texto0 = texto0 .. L["Entregas"] ..":" .. texto .."\n\n"
    end
-   Todo1Titulo:SetText("Lavradores" .. L["Objetivos"] .." ("..total_objetivos..")")
+   Todo1Titulo:SetText("Lavradores " .. L["Objetivos"] .." ("..total_objetivos..")")
    Todo1Lista:SetText(texto0)
 end
-
-function LavradoresInicia()     
-     if PratosEntregues then
-        AtualizeLavradores()
-     else
-        PratosEntregues = {
-             ["74649"]  = 10,
-            }
-     end
- end
+function Lavradores:GetFarm()
+    if self.db.char.farm  then
+        return true
+    else
+        return false
+    end
+end
+function Lavradores:SetFarm(info,value)
+    self.db.char.farm = value
+    self:Atualize()
+end
 
 function Lavradores:MantimentosOn()
     Lavradores:RegisterEvent("GOSSIP_SHOW", "SelecionaQuestMantimentos")
