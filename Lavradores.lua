@@ -177,7 +177,7 @@ function Lavradores:Atualize()
            limite = conteudo[1] - jatem
            if limite > 0 then
              if count < limite or  Lavradores:GetFarm() then
-               texto = texto .."\n".. count .."/".. limite .. " - " .. conteudo[2] 
+               texto = texto .."\n- ".. count .."/".. limite .. " " .. conteudo[2] 
                total_objetivos = total_objetivos + 1
                end
            end
@@ -195,7 +195,7 @@ function Lavradores:Atualize()
        local name, desc, rep = GetFactionInfoByID(conteudo[3])
 
        if PratosEntregues[id] ~= day and rep < 8  then -- rep = 8 = exalted
-           texto = "\n - " .. count .. conteudo[1] .. texto 
+           texto = "\n- " .. count .. conteudo[1] .. texto 
            total_objetivos = total_objetivos + 1
        end
    end
