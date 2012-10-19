@@ -4,8 +4,8 @@ local L = LibStub("AceLocale-3.0"):NewLocale("Lavradores", "ptBR",true)
 if not L then return end 
 
 
- L["Mover lista"]= true
- L["Permite mudar a posição da lista."]=true
+L["Mover lista"]= true
+L["Permite mudar a posição da lista."]=true
 L["Escondido"] = true
 L["Marque se quiser deixar a lista de ingredientes escondida"] =true
 L["Reabastecendo a despensa"] =true
