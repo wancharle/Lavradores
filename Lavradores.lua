@@ -4,21 +4,21 @@ local id_prato = 0
 local prato_count = 0;
 local Ingredientes = {
     ["Carnes"] = {
-        ["74837"] = { 5, "/5 " .. L["Carnes Crua de tartaruga"]},
-        ["74833"] = { 5, "/5 " .. L["Bifes de Tigre de Cru"] },
-        ["74839"] = { 10, "/10 " .. L["Peitos de Ave Selvagem"] }
+        ["74837"] = { 5,  L["Carnes Crua de tartaruga"], {["74649"]=5}},
+        ["74833"] = { 5,  L["Bifes de Tigre de Cru"], {["74642"]=5}},
+        ["74839"] = { 10,  L["Peitos de Ave Selvagem"], {["74654"]=5,["74647"]=5} }
     },
     ["Peixes"] = {
-          ["74864"] = { 5, "/5 " .. L["Polvos dos Recifes"]},
-          ["74856"] = {10, "/10 " .. L["Piramboia de Jade"]},
-          ["74857"] = {5, "/5 " .. L["Camarão-grilo Gigante"]},
-          ["74865"] = {10, "/10 " .. L["Peixe-espátula de Krasarang"]},
-          ["74859"] = {10, "/10 " .. L["Salmão imperial"]}
+          ["74864"] = { 5, L["Polvos dos Recifes"], {["74647"]=5}},
+          ["74856"] = {10, L["Piramboia de Jade"], {["74644"]=5,["74645"]=5}},
+          ["74857"] = {5,  L["Camarão-grilo Gigante"], {["74651"]=5}},
+          ["74865"] = {10, L["Peixe-espátula de Krasarang"], { ["74655"]=10}},
+          ["74859"] = {5,  L["Salmão imperial"], {["74652"]=5, }}
     },
     ["Legumes"] = {
-         ["74843"] = { 25, "/25 " .. L["Cebolinhas"]},
-         ["74841"] = { 25, "/25 " .. L["Cenoura Mordélicia"]},
-         ["74848"] = { 25, "/25 " .. L["Melão Listrado"]}
+         ["74843"] = { 25,  L["Cebolinhas"], {["74652"]=25}},
+         ["74841"] = { 35,  L["Cenoura Mordélicia"], {["74649"]=25,["74643"]=10}},
+         ["74848"] = { 25,  L["Melão Listrado"], {["74645"]=25}}
    }
 }
 
@@ -170,8 +170,17 @@ function AtualizeLavradores()
        texto = ""
        for id, conteudo in pairs(Ingredientes[tipo]) do
            local count = GetItemCount(id)
-           if count < conteudo[1] then
-               texto = texto .."\n - ".. count .. conteudo[2] 
+           local jatem = 0
+           for p, ja in pairs(conteudo[3]) do
+                local name, desc, rep = GetFactionInfoByID(Pratos[p][3])
+                if rep == 8 then
+                    jatem = jatem + ja
+                end
+           end
+           local limite = 0
+           limite = conteudo[1] - jatem
+           if count < limite then
+               texto = texto .."\n".. count .."/".. limite .. " - " .. conteudo[2] 
                total_objetivos = total_objetivos + 1
            end
        end
@@ -185,7 +194,7 @@ function AtualizeLavradores()
    texto = ""
    for id, conteudo in pairs(Pratos) do
        local count = GetItemCount(id)
-       name, desc, rep = GetFactionInfoByID(conteudo[3])
+       local name, desc, rep = GetFactionInfoByID(conteudo[3])
 
        if PratosEntregues[id] ~= day and rep < 8  then -- rep = 8 = exalted
            texto = "\n - " .. count .. conteudo[1] .. texto 
