@@ -162,6 +162,8 @@ function Lavradores:Atualize()
    local texto0 = ""  
    local texto = ""
    local total_objetivos = 0
+   
+   local  weekday, month, day, year = CalendarGetDate()
    for tipo, v in pairs(Ingredientes) do
        texto = ""
        for id, conteudo in pairs(Ingredientes[tipo]) do
@@ -169,7 +171,8 @@ function Lavradores:Atualize()
            local jatem = 0
            for p, ja in pairs(conteudo[3]) do
                 local name, desc, rep = GetFactionInfoByID(Pratos[p][3])
-                if rep == 8 then
+                if rep == 8 or GetItemCount(p) >= 5 or PratosEntregues[p] == day then
+
                     jatem = jatem + ja
                 end
            end
@@ -188,7 +191,6 @@ function Lavradores:Atualize()
    end
 
    -- verifica missoes
-   local  weekday, month, day, year = CalendarGetDate()
    texto = ""
    for id, conteudo in pairs(Pratos) do
        local count = GetItemCount(id)

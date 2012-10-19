@@ -2,7 +2,7 @@
 ## Title: Lavradores
 ## Author: Zehd - Goldrin
 ## Notes: A set of utilities to help gain reputation with Tillers.
-## Version: 1.0.7
+## Version: 1.0.8
 ## SavedVariables: LavradoresDB
 ## SavedVariablesPerCharacter: PratosEntregues
 
