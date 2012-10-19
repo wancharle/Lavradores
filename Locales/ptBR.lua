@@ -4,14 +4,13 @@ local L = LibStub("AceLocale-3.0"):NewLocale("Lavradores", "ptBR",true)
 if not L then return end 
 
 
-
+ L["Mover lista"]= true
+ L["Permite mudar a posição da lista."]=true
 L["Escondido"] = true
 L["Marque se quiser deixar a lista de ingredientes escondida"] =true
 L["Reabastecendo a despensa"] =true
 L["Auto completa a quest 'Reabastecendo a despensa'"]=true
 L["Mostra a lista de ingredientes mesmo quando a pessoa já pegou os itens necessários para o dia."]=true
-
-
 
 
 L["Lavrador ERRADO!"] = true

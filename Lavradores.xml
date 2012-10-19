@@ -73,7 +73,14 @@
 
       
     </Frames>
-
+<scripts>
+			<OnMouseDown> 
+                Lavradores:OnMouseDown() 
+            </OnMouseDown>
+			<OnMouseUp> Lavradores:OnMouseUp()        </OnMouseUp>
+			<OnDragStop> Lavradores:OnDragStop()</OnDragStop>
+  
+</scripts>
 </Frame>
 
 </Ui>

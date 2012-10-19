@@ -217,7 +217,33 @@ function Lavradores:SetFarm(info,value)
     self.db.char.farm = value
     self:Atualize()
 end
+function Lavradores:SetMovable(info,value)
+    self.db.char.move = value
+    Todo1:SetMovable(value)
+end
+function Lavradores:GetMovable()
+    if self.db.char.move then
+        return true
+    else
+        return false
+    end
+end
+function Lavradores:OnMouseDown()
+      if Lavradores:GetMovable() then
+                Todo1:StartMoving(); 
+       end
+end
+function Lavradores:OnMouseUp()
+       if Lavradores:GetMovable() then 
+                Todo1:StopMovingOrSizing()
+       end
+end
 
+function Lavradores:OnDragStop()
+  if Lavradores:GetMovable() then
+                Todo1:StopMovingOrSizing(); 
+   end
+end
 function Lavradores:MantimentosOn()
     Lavradores:RegisterEvent("GOSSIP_SHOW", "SelecionaQuestMantimentos")
     Lavradores:RegisterEvent("QUEST_PROGRESS", "QUEST_PROGRESS")

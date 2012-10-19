@@ -10,16 +10,25 @@ Lavradores.options = {
                         name = L["Escondido"],
                         desc = L["Marque se quiser deixar a lista de ingredientes escondida"],
                         order = 1,
-                        width= "full",
                         set = "SetEscondido",
                         get = "GetEscondido",
                    },
+                   Movel = {
+                       type = "toggle",
+                       name = L["Mover lista"],
+                       desc = L["Permite mudar a posição da lista."],
+                       order = 2,
+                       width = "double",
+                       set = "SetMovable",
+                       get = "GetMovable",
+                       
+                       },
         
              Mantimentos = {
                        type = "toggle",
                        name = L["Reabastecendo a despensa"],
                        width = "double",
-                       order = 3,
+                       order = 4,
                        desc = L["Auto completa a quest 'Reabastecendo a despensa'"],
                        set = "SetMantimentos",
                        get = "GetMantimentos",
@@ -28,7 +37,7 @@ Lavradores.options = {
                         type ="toggle",
                         name = "Farm", 
                         desc = L["Mostra a lista de ingredientes mesmo quando a pessoa já pegou os itens necessários para o dia."], 
-                        order = 2,
+                        order = 3,
                         set = "SetFarm",
                         get = "GetFarm",
 
