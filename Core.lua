@@ -29,6 +29,10 @@ function Lavradores:OnEnable()
             }
    end
 
+   if self.db.char.move == false then
+       self:SetMovable("",false)
+   end
+
    if self.db.char.historico then
        self:Hook()
    end

@@ -219,7 +219,7 @@ function Lavradores:SetFarm(info,value)
 end
 function Lavradores:SetMovable(info,value)
     self.db.char.move = value
-    Todo1:SetMovable(value)
+    Todo1:EnableMouse(value)
 end
 function Lavradores:GetMovable()
     if self.db.char.move then

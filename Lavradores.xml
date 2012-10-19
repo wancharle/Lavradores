@@ -18,7 +18,7 @@
           </Anchors>
     </Frame>
  
-   <Frame name="Todo1" hidden="false" inherits="FaraFrames" movable="false" enablemouse="true">
+   <Frame name="Todo1" hidden="false" inherits="FaraFrames" movable="true" enablemouse="true">
    <Layers>
        <Layer level="ARTWORK">
 
