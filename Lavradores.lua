@@ -169,18 +169,22 @@ function Lavradores:Atualize()
        for id, conteudo in pairs(Ingredientes[tipo]) do
            local count = GetItemCount(id)
            local jatem = 0
+           local need = false
            for p, ja in pairs(conteudo[3]) do
                 local name, desc, rep = GetFactionInfoByID(Pratos[p][3])
-                if rep == 8 or GetItemCount(p) >= 5 or PratosEntregues[p] == day then
+                if rep == 8 or GetItemCount(p) >= 5 or (PratosEntregues[p] == day and not Lavradores:GetFarm()) then
+                    
                     jatem = jatem + (ja*5)
                 else
                     jatem = jatem + GetItemCount(p)*ja
                 end
-                
+                if rep < 8 then
+                        need = true
+                end
            end
            local limite = 0
            limite = conteudo[1] - jatem
-           if limite > 0 then
+           if limite > 0  or (Lavradores:GetFarm() and need) then
              if count < limite or  Lavradores:GetFarm() then
                texto = texto .."\n- ".. count .."/".. limite .. " " .. conteudo[2] 
                total_objetivos = total_objetivos + 1
