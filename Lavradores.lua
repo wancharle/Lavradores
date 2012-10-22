@@ -100,7 +100,9 @@ function frame:OnEvent(event, arg1)
                 prato_count = 0
             end
         end
+        if Lavradores.inicializado then
         Lavradores:Atualize()
+        end
     else  
         if event =="QUEST_PROGRESS" and  GetNumQuestItems() > 0 then
                   Lavradores:CheckItens()

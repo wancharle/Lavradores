@@ -20,7 +20,8 @@ end
 function Lavradores:OnEnable()
     Lavradores:Enable()
     self.db = LibStub("AceDB-3.0"):New("LavradoresDB")
-    
+ 
+   Lavradores.inicializado = true
    if PratosEntregues then
         Lavradores:Atualize()
    else
